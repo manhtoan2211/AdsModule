@@ -7,17 +7,8 @@ import java.util.List;
 
 public class AperoAdConfig {
 
-    //switch mediation use for app
-    public static final int PROVIDER_ADMOB = 0;
-    public static final int PROVIDER_MAX = 1;
-
     public static final String ENVIRONMENT_DEBUG = "debug";
     public static final String ENVIRONMENT_PRODUCTION = "release";
-
-    /**
-     * config ad mediation using for app
-     */
-    private int mediationProvider = PROVIDER_ADMOB;
 
     private boolean isVariantDev = false;
 
@@ -41,20 +32,11 @@ public class AperoAdConfig {
         this.application = application;
     }
 
-    public AperoAdConfig(Application application, int mediationProvider, String environment) {
-        this.mediationProvider = mediationProvider;
+    public AperoAdConfig(Application application, String environment) {
         this.isVariantDev = environment.equals(ENVIRONMENT_DEBUG);
         this.application = application;
     }
 
-
-    public void setMediationProvider(int mediationProvider) {
-        this.mediationProvider = mediationProvider;
-    }
-
-    /**
-     * @deprecated As of release 5.5.0, replaced by {@link #setEnvironment(String)}
-     */
     @Deprecated
     public void setVariant(Boolean isVariantDev) {
         this.isVariantDev = isVariantDev;
@@ -70,11 +52,6 @@ public class AperoAdConfig {
 
     public Application getApplication() {
         return application;
-    }
-
-
-    public int getMediationProvider() {
-        return mediationProvider;
     }
 
     public Boolean isVariantDev() {

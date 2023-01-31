@@ -75,14 +75,8 @@ public class SimpleListActivity extends AppCompatActivity {
         originalAdapter.setSampleData(sampleData);
         recyclerView = findViewById(R.id.rvListSimple);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        if (AperoAd.getInstance().getMediationProvider() == AperoAdConfig.PROVIDER_ADMOB) {
-            layoutCustomNative = com.ads.control.R.layout.custom_native_admod_medium;
-            idNative = getString(R.string.admod_native_id);
-        } else {
-            layoutCustomNative = com.ads.control.R.layout.custom_native_max_small;
-            idNative = getString(R.string.applovin_test_native);
-        }
+        layoutCustomNative = com.ads.control.R.layout.custom_native_admod_medium;
+        idNative = getString(R.string.admod_native_id);
 
         setupAdAdapter();
         swRefresh.setOnRefreshListener(() -> {

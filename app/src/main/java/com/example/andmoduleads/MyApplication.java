@@ -2,8 +2,6 @@ package com.example.andmoduleads;
 
 import com.ads.control.ads.AperoAd;
 import com.ads.control.application.AdsMultiDexApplication;
-import com.ads.control.applovin.AppLovin;
-import com.ads.control.applovin.AppOpenMax;
 import com.ads.control.billing.AppPurchase;
 import com.ads.control.admob.Admob;
 import com.ads.control.admob.AppOpenManager;
@@ -35,7 +33,7 @@ public class MyApplication extends AdsMultiDexApplication {
 
     private void initAds() {
         String environment = BuildConfig.DEBUG ? AperoAdConfig.ENVIRONMENT_DEBUG : AperoAdConfig.ENVIRONMENT_PRODUCTION;
-        aperoAdConfig = new AperoAdConfig(this, AperoAdConfig.PROVIDER_ADMOB, environment);
+        aperoAdConfig = new AperoAdConfig(this, environment);
 
         // Optional: enable ads resume
         aperoAdConfig.setIdAdResume(BuildConfig.AD_APPOPEN_RESUME);
@@ -49,15 +47,10 @@ public class MyApplication extends AdsMultiDexApplication {
 
         // Auto disable ad resume after user click ads and back to app
         Admob.getInstance().setDisableAdResumeWhenClickAds(true);
-        AppLovin.getInstance().setDisableAdResumeWhenClickAds(true);
         // If true -> onNextAction() is called right after Ad Interstitial showed
         Admob.getInstance().setOpenActivityAfterShowInterAds(false);
 
-        if (AperoAd.getInstance().getMediationProvider() == AperoAdConfig.PROVIDER_ADMOB) {
-            AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity.class);
-        } else {
-            AppOpenMax.getInstance().disableAppResumeWithActivity(SplashActivity.class);
-        }
+        AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity.class);
     }
 
     private void initBilling() {

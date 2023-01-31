@@ -47,12 +47,7 @@ public class BlankFragment extends Fragment {
         button =    view.findViewById(R.id.btnNextFragment);
         button.setEnabled(false);
         View view1 = view.findViewById(R.id.include).getRootView();
-        String idBanner;
-        if (AperoAd.getInstance().getMediationProvider() == AperoAdConfig.PROVIDER_ADMOB) {
-            idBanner = getString(R.string.admod_banner_id);
-        } else {
-            idBanner = getString(R.string.applovin_test_banner);
-        }
+        String idBanner = getString(R.string.admod_banner_id);
 
         AperoAd.getInstance().loadBannerFragment(requireActivity(), idBanner, view1, new AdCallback() {
             @Override

@@ -35,10 +35,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        if (AperoAd.getInstance().getMediationProvider() == AperoAdConfig.PROVIDER_ADMOB)
-            idAdSplash = BuildConfig.AD_INTERSTITIAL_SPLASH;
-        else
-            idAdSplash = getString(R.string.applovin_test_inter);
+        idAdSplash = BuildConfig.AD_INTERSTITIAL_SPLASH;
         AppPurchase.getInstance().setBillingListener(new BillingListener() {
             @Override
             public void onInitBillingFinished(int code) {
@@ -100,8 +97,7 @@ public class SplashActivity extends AppCompatActivity {
         AperoAd.getInstance().setInitCallback(new AperoInitCallback() {
             @Override
             public void initAdSuccess() {
-                /*AperoAd.getInstance().loadSplashInterstitialAds(SplashActivity.this, idAdSplash, 30000, 5000, true, adCallback);*/
-                loadAdmobAd();
+                AperoAd.getInstance().loadSplashInterstitialAds(SplashActivity.this, idAdSplash, 30000, 5000, true, adCallback);
             }
         });
 

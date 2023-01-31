@@ -200,21 +200,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configMediationProvider() {
-        if (AperoAd.getInstance().getMediationProvider() == AperoAdConfig.PROVIDER_ADMOB) {
-            idBanner = BuildConfig.AD_BANNER;
-            idNative = BuildConfig.AD_NATIVE;
-            idInter = BuildConfig.AD_INTERSTITIAL_SPLASH;
-            layoutNativeCustom = com.ads.control.R.layout.custom_native_admod_medium_rate;
-        } else {
-            idBanner = getString(R.string.applovin_test_banner);
-            idNative = getString(R.string.applovin_test_native);
-            idInter = getString(R.string.applovin_test_inter);
-            layoutNativeCustom = com.ads.control.R.layout.custom_native_max_medium;
-        }
+        idBanner = BuildConfig.AD_BANNER;
+        idNative = BuildConfig.AD_NATIVE;
+        idInter = BuildConfig.AD_INTERSTITIAL_SPLASH;
+        layoutNativeCustom = com.ads.control.R.layout.custom_native_admod_medium_rate;
     }
 
     private void loadAdInterstitial() {
-
         mInterstitialAd = AperoAd.getInstance().getInterstitialAds(this, idInter);
     }
 

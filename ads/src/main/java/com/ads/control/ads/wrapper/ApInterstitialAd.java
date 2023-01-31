@@ -36,8 +36,8 @@ public class ApInterstitialAd extends ApAdBase{
     }
 
     @Override
-    public boolean isReady(){
-        if (maxInterstitialAd!=null && maxInterstitialAd.isReady())
+    public boolean isReady() {
+        if (maxInterstitialAd != null && maxInterstitialAd.isReady())
             return true;
         return interstitialAd != null;
     }
