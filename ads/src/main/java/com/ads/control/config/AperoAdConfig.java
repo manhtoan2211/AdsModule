@@ -11,7 +11,7 @@ public class AperoAdConfig {
     public static final int PROVIDER_ADMOB = 0;
     public static final int PROVIDER_MAX = 1;
 
-    public static final String ENVIRONMENT_DEVELOP = "debug";
+    public static final String ENVIRONMENT_DEBUG = "debug";
     public static final String ENVIRONMENT_PRODUCTION = "release";
 
     /**
@@ -52,7 +52,7 @@ public class AperoAdConfig {
 
     public AperoAdConfig(Application application, int mediationProvider, String environment) {
         this.mediationProvider = mediationProvider;
-        this.isVariantDev = environment.equals(ENVIRONMENT_DEVELOP);
+        this.isVariantDev = environment.equals(ENVIRONMENT_DEBUG);
         this.application = application;
     }
 
@@ -70,7 +70,7 @@ public class AperoAdConfig {
     }
 
     public void setEnvironment(String environment) {
-        this.isVariantDev = environment.equals(ENVIRONMENT_DEVELOP);
+        this.isVariantDev = environment.equals(ENVIRONMENT_DEBUG);
     }
 
     public AdjustConfig getAdjustConfig() {

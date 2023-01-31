@@ -1,6 +1,6 @@
 
 # AperoModuleAds
-This is SDK ads by [Apero](https://apero.vn/). It has built in some sdk for easy use like
+This is SDK ads by. It has built in some sdk for easy use like
 - Admob
 - MAX Mediation(Applovin)
 - Google Billing
@@ -67,7 +67,7 @@ class App : AdsMultiDexApplication(){
     public void onCreate() {
         super.onCreate();
 	...
-        String environment = BuildConfig.build_debug ? AperoAdConfig.ENVIRONMENT_DEVELOP : AperoAdConfig.ENVIRONMENT_PRODUCTION;
+        String environment = BuildConfig.DEBUG ? AperoAdConfig.ENVIRONMENT_DEBUG : AperoAdConfig.ENVIRONMENT_PRODUCTION;
         aperoAdConfig = new AperoAdConfig(this, AperoAdConfig.PROVIDER_ADMOB, environment);
 
         // Optional: setup Adjust event

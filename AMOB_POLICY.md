@@ -1,5 +1,5 @@
 # Quy định chung
-* [Config module ads](https://github.com/AperoVN/AperoModuleAds)
+* [Config module ads]
 * Luôn sử dụng ID test (config variant appTesst) trong quá trình phát triển
 * Chỉ sử dụng ID thật khi đã pass test và build aab (trừ 1 số trường hợp debug cần check ad thật)
 * Không để bất kỳ content nào của app đè lên ads, cả loading (Chỉ chấp nhận các loại dialog, popup...có thể bật tắt)
