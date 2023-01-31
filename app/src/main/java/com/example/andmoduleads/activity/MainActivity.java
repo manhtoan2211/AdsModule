@@ -36,23 +36,15 @@ import com.google.android.gms.ads.nativead.NativeAd;
 public class MainActivity extends AppCompatActivity {
     public static final String PRODUCT_ID = "android.test.purchased";
     private static final String TAG = "MAIN_TEST";
-    //adjust
-    private static final String EVENT_TOKEN_SIMPLE = "g3mfiw";
-    private static final String EVENT_TOKEN_REVENUE = "a4fd35";
 
-
-    private FrameLayout frAds;
     private NativeAd unifiedNativeAd;
     private ApInterstitialAd mInterstitialAd;
     private ApRewardAd rewardAd;
-
-    private boolean isShowDialogExit = false;
 
     private String idBanner = "";
     private String idNative = "";
     private String idInter = "";
 
-    private int layoutNativeCustom;
     private AperoNativeAdView aperoNativeAdView;
 
     @Override
@@ -115,9 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btShowAds).setOnClickListener(v -> {
             if (mInterstitialAd.isReady()) {
-
-                ApInterstitialAd inter = AperoAd.getInstance().getInterstitialAds(this, idInter);
-
                 AperoAd.getInstance().showInterstitialAdByTimes(this, mInterstitialAd, new AperoAdCallback() {
                     @Override
                     public void onNextAction() {
@@ -129,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onAdFailedToShow(@Nullable ApAdError adError) {
                         super.onAdFailedToShow(adError);
                         Log.i(TAG, "onAdFailedToShow:" + adError.getMessage());
+                        startActivity(new Intent(MainActivity.this, ContentActivity.class));
                     }
 
                     @Override
@@ -140,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "start loading ads", Toast.LENGTH_SHORT).show();
                 loadAdInterstitial();
+                startActivity(new Intent(MainActivity.this, ContentActivity.class));
             }
         });
 
@@ -156,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onAdFailedToShow(@Nullable ApAdError adError) {
                         super.onAdFailedToShow(adError);
                         Log.i(TAG, "onAdFailedToShow:" + adError.getMessage());
+                        startActivity(new Intent(MainActivity.this, SimpleListActivity.class));
                     }
 
                     @Override
@@ -165,14 +157,21 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, true);
             } else {
+                Toast.makeText(this, "start loading ads", Toast.LENGTH_SHORT).show();
                 loadAdInterstitial();
+                startActivity(new Intent(MainActivity.this, SimpleListActivity.class));
             }
 
         });
 
         findViewById(R.id.btnShowReward).setOnClickListener(v -> {
             if (rewardAd != null && rewardAd.isReady()) {
-                AperoAd.getInstance().forceShowRewardAd(this, rewardAd, new AperoAdCallback());
+                AperoAd.getInstance().forceShowRewardAd(this, rewardAd, new AperoAdCallback() {
+                    @Override
+                    public void onAdClosed() {
+                        super.onAdClosed();
+                    }
+                });
                 return;
             }
             rewardAd = AperoAd.getInstance().getRewardAd(this,  BuildConfig.AD_REWARD);
@@ -203,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
         idBanner = BuildConfig.AD_BANNER;
         idNative = BuildConfig.AD_NATIVE;
         idInter = BuildConfig.AD_INTERSTITIAL_SPLASH;
-        layoutNativeCustom = com.ads.control.R.layout.custom_native_admod_medium_rate;
     }
 
     private void loadAdInterstitial() {
@@ -227,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadNativeExit() {
-
         if (unifiedNativeAd != null)
             return;
         Admob.getInstance().loadNativeAd(this, BuildConfig.AD_NATIVE, new AdCallback() {
@@ -263,7 +260,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        AppPurchase.getInstance().handleActivityResult(requestCode, resultCode, data);
         Log.e("onActivityResult", "ProductPurchased:" + data.toString());
         if (AppPurchase.getInstance().isPurchased(this)) {
             findViewById(R.id.btIap).setVisibility(View.GONE);

@@ -1,8 +1,5 @@
 package com.ads.control.ads.wrapper;
 
-/**
- * Created by lamlt on 12/08/2022.
- */
 public abstract class ApAdBase {
     protected StatusAd status = StatusAd.AD_INIT;
 

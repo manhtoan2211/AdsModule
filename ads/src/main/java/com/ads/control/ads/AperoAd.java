@@ -795,20 +795,6 @@ public class AperoAd {
         return apRewardAd;
     }
 
-    public ApRewardAd getRewardAdInterstitial(Activity activity, String id) {
-        ApRewardAd apRewardAd = new ApRewardAd();
-        Admob.getInstance().getRewardInterstitial(activity, id, new AdCallback() {
-
-            @Override
-            public void onRewardAdLoaded(RewardedInterstitialAd rewardedAd) {
-                super.onRewardAdLoaded(rewardedAd);
-                Log.i(TAG, "getRewardAdInterstitial AdLoaded: ");
-                apRewardAd.setAdmobReward(rewardedAd);
-            }
-        });
-        return apRewardAd;
-    }
-
     public ApRewardAd getRewardAd(Activity activity, String id, AperoAdCallback callback) {
         ApRewardAd apRewardAd = new ApRewardAd();
         Admob.getInstance().initRewardAds(activity, id, new AdCallback() {
@@ -822,18 +808,6 @@ public class AperoAd {
         return apRewardAd;
     }
 
-    public ApRewardAd getRewardInterstitialAd(Activity activity, String id, AperoAdCallback callback) {
-        ApRewardAd apRewardAd = new ApRewardAd();
-        Admob.getInstance().getRewardInterstitial(activity, id, new AdCallback() {
-            @Override
-            public void onRewardAdLoaded(RewardedInterstitialAd rewardedAd) {
-                super.onRewardAdLoaded(rewardedAd);
-                apRewardAd.setAdmobReward(rewardedAd);
-                callback.onAdLoaded();
-            }
-        });
-        return apRewardAd;
-    }
 
     public void forceShowRewardAd(Activity activity, ApRewardAd apRewardAd, AperoAdCallback
             callback) {
@@ -842,61 +816,33 @@ public class AperoAd {
             callback.onNextAction();
             return;
         }
-        if (apRewardAd.isRewardInterstitial()) {
-            Admob.getInstance().showRewardInterstitial(activity, apRewardAd.getAdmobRewardInter(), new RewardCallback() {
 
-                @Override
-                public void onUserEarnedReward(RewardItem var1) {
-                    callback.onUserEarnedReward(new ApRewardItem(var1));
-                }
+        Admob.getInstance().showRewardAds(activity, apRewardAd.getAdmobReward(), new RewardCallback() {
 
-                @Override
-                public void onRewardedAdClosed() {
-                    apRewardAd.clean();
-                    callback.onNextAction();
-                }
+            @Override
+            public void onUserEarnedReward(RewardItem var1) {
+                callback.onUserEarnedReward(new ApRewardItem(var1));
+            }
 
-                @Override
-                public void onRewardedAdFailedToShow(int codeError) {
-                    apRewardAd.clean();
-                    callback.onAdFailedToShow(new ApAdError(new AdError(codeError, "note msg", "Reward")));
-                }
+            @Override
+            public void onRewardedAdClosed() {
+                apRewardAd.clean();
+                callback.onNextAction();
+            }
 
-                @Override
-                public void onAdClicked() {
-                    if (callback != null) {
-                        callback.onAdClicked();
-                    }
-                }
-            });
-        } else {
-            Admob.getInstance().showRewardAds(activity, apRewardAd.getAdmobReward(), new RewardCallback() {
+            @Override
+            public void onRewardedAdFailedToShow(int codeError) {
+                apRewardAd.clean();
+                callback.onAdFailedToShow(new ApAdError(new AdError(codeError, "note msg", "Reward")));
+            }
 
-                @Override
-                public void onUserEarnedReward(RewardItem var1) {
-                    callback.onUserEarnedReward(new ApRewardItem(var1));
+            @Override
+            public void onAdClicked() {
+                if (callback != null) {
+                    callback.onAdClicked();
                 }
-
-                @Override
-                public void onRewardedAdClosed() {
-                    apRewardAd.clean();
-                    callback.onNextAction();
-                }
-
-                @Override
-                public void onRewardedAdFailedToShow(int codeError) {
-                    apRewardAd.clean();
-                    callback.onAdFailedToShow(new ApAdError(new AdError(codeError, "note msg", "Reward")));
-                }
-
-                @Override
-                public void onAdClicked() {
-                    if (callback != null) {
-                        callback.onAdClicked();
-                    }
-                }
-            });
-        }
+            }
+        });
     }
 
     /**

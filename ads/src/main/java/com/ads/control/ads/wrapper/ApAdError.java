@@ -1,12 +1,10 @@
 package com.ads.control.ads.wrapper;
 
-import com.applovin.mediation.MaxError;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.LoadAdError;
 
 public class ApAdError {
 
-    private MaxError maxError;
     private LoadAdError loadAdError;
     private AdError adError;
     private String message = "";
@@ -19,10 +17,6 @@ public class ApAdError {
         this.loadAdError = loadAdError;
     }
 
-    public ApAdError(MaxError maxError) {
-        this.maxError = maxError;
-    }
-
     public ApAdError(String message) {
         this.message = message;
     }
@@ -32,8 +26,6 @@ public class ApAdError {
     }
 
     public String getMessage(){
-        if (maxError!=null)
-            return maxError.getMessage();
         if (loadAdError!=null)
             return loadAdError.getMessage();
         if (adError!=null)
