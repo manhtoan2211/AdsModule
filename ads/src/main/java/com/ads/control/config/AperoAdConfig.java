@@ -11,8 +11,8 @@ public class AperoAdConfig {
     public static final int PROVIDER_ADMOB = 0;
     public static final int PROVIDER_MAX = 1;
 
-    public static final String ENVIRONMENT_DEVELOP = "develop";
-    public static final String ENVIRONMENT_PRODUCTION = "production";
+    public static final String ENVIRONMENT_DEVELOP = "debug";
+    public static final String ENVIRONMENT_PRODUCTION = "release";
 
     /**
      * config ad mediation using for app

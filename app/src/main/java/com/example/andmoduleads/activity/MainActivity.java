@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 AperoAd.getInstance().forceShowRewardAd(this, rewardAd, new AperoAdCallback());
                 return;
             }
-            rewardAd = AperoAd.getInstance().getRewardAd(this,  BuildConfig.ad_reward);
+            rewardAd = AperoAd.getInstance().getRewardAd(this,  BuildConfig.AD_REWARD);
         });
 
         Button btnIAP = findViewById(R.id.btIap);
@@ -210,9 +210,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void configMediationProvider() {
         if (AperoAd.getInstance().getMediationProvider() == AperoAdConfig.PROVIDER_ADMOB) {
-            idBanner = BuildConfig.ad_banner;
-            idNative = BuildConfig.ad_native;
-            idInter = BuildConfig.ad_interstitial_splash;
+            idBanner = BuildConfig.AD_BANNER;
+            idNative = BuildConfig.AD_NATIVE;
+            idInter = BuildConfig.AD_INTERSTITIAL_SPLASH;
             layoutNativeCustom = com.ads.control.R.layout.custom_native_admod_medium_rate;
         } else {
             idBanner = getString(R.string.applovin_test_banner);
@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (unifiedNativeAd != null)
             return;
-        Admob.getInstance().loadNativeAd(this, BuildConfig.ad_native, new AdCallback() {
+        Admob.getInstance().loadNativeAd(this, BuildConfig.AD_NATIVE, new AdCallback() {
             @Override
             public void onUnifiedNativeAdLoaded(NativeAd unifiedNativeAd) {
                 MainActivity.this.unifiedNativeAd = unifiedNativeAd;

@@ -9,7 +9,6 @@ import com.ads.control.applovin.AppOpenMax;
 import com.ads.control.billing.AppPurchase;
 import com.ads.control.admob.Admob;
 import com.ads.control.admob.AppOpenManager;
-import com.ads.control.config.AppsflyerConfig;
 import com.example.andmoduleads.activity.MainActivity;
 import com.example.andmoduleads.activity.SplashActivity;
 
@@ -49,7 +48,7 @@ public class MyApplication extends AdsMultiDexApplication {
     }
 
     private void initAds() {
-        String environment = BuildConfig.env_dev ? AperoAdConfig.ENVIRONMENT_DEVELOP : AperoAdConfig.ENVIRONMENT_PRODUCTION;
+        String environment = BuildConfig.DEBUG ? AperoAdConfig.ENVIRONMENT_DEVELOP : AperoAdConfig.ENVIRONMENT_PRODUCTION;
         aperoAdConfig = new AperoAdConfig(this, AperoAdConfig.PROVIDER_ADMOB, environment);
 
         // Optional: setup Adjust event
@@ -63,7 +62,7 @@ public class MyApplication extends AdsMultiDexApplication {
 //        aperoAdConfig.setAppsflyerConfig(appsflyerConfig);
 
         // Optional: enable ads resume
-        aperoAdConfig.setIdAdResume(BuildConfig.ads_open_app);
+        aperoAdConfig.setIdAdResume(BuildConfig.AD_APPOPEN_RESUME);
 
         // Optional: setup list device test - recommended to use
         listTestDevice.add("EC25F576DA9B6CE74778B268CB87E431");
