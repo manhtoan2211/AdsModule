@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FDA6A6"
+    tools:context=".activity.MainActivity">
+
+    <com.ads.control.ads.nativeAds.AperoNativeAdView
+        android:id="@+id/aperoNativeAds"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:background="@drawable/bg_card_ads"
+        app:layoutCustomNativeAd="@layout/custom_native_admod_medium_rate"
+        app:layoutLoading="@layout/loading_native_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <include
+
+        android:id="@+id/include3"
+        layout="@layout/layout_native_medium" />-->
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/include"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aperoNativeAds">
+
+
+        <Button
+            android:id="@+id/btShowAds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Click 3 lần hiện full" />
+
+
+        <Button
+            android:id="@+id/btForceShowAds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btShowAds"
+            android:layout_centerHorizontal="true"
+            android:text="Click 1 lần hiện full" />
+
+        <Button
+            android:id="@+id/btnShowReward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btForceShowAds"
+            android:layout_centerHorizontal="true"
+            android:text="Show reward" />
+
+
+        <Button
+
+            android:id="@+id/btIap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnShowReward"
+            android:layout_centerHorizontal="true"
+            android:text="IAP test" />
+
+        <Button
+
+            android:id="@+id/btnAdjustEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btIap"
+            android:layout_centerHorizontal="true"
+            android:onClick="onTrackSimpleEventClick"
+            android:text="Event sample adjust" />
+
+        <Button
+
+            android:id="@+id/btnAdjustTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnAdjustEvent"
+            android:layout_centerHorizontal="true"
+            android:onClick="onTrackRevenueEventClick"
+            android:text="Track Revenue adjust" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.ads.control.ads.bannerAds.AperoBannerAdView
+        android:id="@+id/bannerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

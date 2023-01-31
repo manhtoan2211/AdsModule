@@ -1,0 +1,143 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
+
+group = 'com.github.AperoVN'
+version = '5.5.6-alpha02'
+
+android {
+    compileSdkVersion 31
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 9
+        versionName "1.1.3"
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        productFlavors {
+        }
+        buildTypes {
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+/*publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId = "apero"
+            artifactId "apero-ads"
+            version = "5.5.4-alpha08"
+            artifact "${project.buildDir}/outputs/aar/ads-release.aar"
+
+            pom.withXml {
+                def dependenciesNode = asNode().getAt('dependencies')[0] ?: asNode().appendNode('dependencies')
+                // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+                configurations.implementation.allDependencies.each {
+                    // Ensure dependencies such as fileTree are not included.
+                    if (it.name != 'unspecified') {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        if (it.version != null) {
+                            dependencyNode.appendNode('version', it.version)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url 'https://artifactory.apero.vn/artifactory/gradle-release/'
+            credentials {
+                username "deployer"
+                password "apero@123"
+            }
+        }
+    }
+}*/
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+//    implementation 'com.anjlab.android.iab.v3:library:1.1.0'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
+
+    //admob
+    implementation 'com.google.android.gms:play-services-ads:21.4.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
+    //mediation admob
+    implementation 'com.google.ads.mediation:facebook:6.12.0.0'
+    implementation 'com.google.ads.mediation:adcolony:4.8.0.0'
+    implementation 'com.google.ads.mediation:applovin:11.5.1.0'
+    implementation 'com.google.ads.mediation:vungle:6.12.0.0'
+
+
+    def lifecycle_version = "2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    //implementation platform('com.google.firebase:firebase-bom:30.1.0')
+    implementation 'com.google.firebase:firebase-analytics:21.2.0'
+
+    def multidex_version = "2.0.1"
+    implementation "androidx.multidex:multidex:$multidex_version"
+    def billing_version = "5.1.0"
+    implementation "com.android.billingclient:billing:$billing_version"
+    implementation "com.google.guava:guava:27.1-android"
+    //adjust
+    implementation 'com.adjust.sdk:adjust-android:4.33.1'
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+
+    implementation 'com.google.android.gms:play-services-appset:16.0.0'
+    implementation 'com.google.android.gms:play-services-basement:17.1.1'
+    //implementation "androidx.core:core-ktx:1.3.2"
+    //implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.0.0"
+    //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //fb sdk
+    implementation 'com.facebook.android:facebook-android-sdk:15.2.0'
+
+    implementation 'com.airbnb.android:lottie:5.0.2'
+
+    // applovin
+    implementation 'com.applovin:applovin-sdk:11.4.2'
+
+    // appsflyer
+    implementation 'com.appsflyer:af-android-sdk:6.8.2'
+    implementation 'com.appsflyer:adrevenue:6.4.3'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.AperoVN'
+                artifactId = 'AperoModuleAds'
+                version = '5.5.4-alpha5'
+            }
+        }
+    }
+}

@@ -1,0 +1,3 @@
+include ':ads'
+include ':app'
+rootProject.name = "AndModuleAds"

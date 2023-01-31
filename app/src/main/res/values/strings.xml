@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">AndModuleAds</string>
+    <string name="admod_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admod_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admod_native_id">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="admod_interstitial_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admod_app_open_ad_id">ca-app-pub-3940256099942544/3419835294</string>
+    <string name="admod_app_reward_id">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="admod_app_reward_inter_id">ca-app-pub-3940256099942544/5354046379</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+    <!-- FAN ID -->
+    <string name="fan_interstitial_id">1088964791852832_1088965305186114</string>
+    <string name="fan_native_id">1088964791852832_1088965385186106</string>
+    <string name="fan_banner_id">1088964791852832_1088965248519453</string>
+    <string name="fan_native_banner_id">1088964791852832_1088965481852763</string>
+    <string name="fan_reward_id">1088964791852832_1088965625186082</string>
+    <string name="facebook_app_id">1088964791852832</string>
+
+
+    <!-- MAX TEST ID -->
+    <string name="applovin_test_inter">c630fe3686063741</string>
+    <string name="applovin_test_banner">31cdd2e81ad9805e</string>
+    <string name="applovin_test_native">b8f6f81612cddf23</string>
+    <string name="applovin_test_reward">5ac0003d6da0d104</string>
+</resources>
