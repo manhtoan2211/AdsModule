@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         aperoNativeAdView = findViewById(R.id.aperoNativeAds);
 
-
         configMediationProvider();
         AperoAd.getInstance().setCountClickToShowAds(3);
 
@@ -77,12 +76,6 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Sample integration native ads
          */
-        /*
-        AperoAd.getInstance().loadNativeAd(this, idNative, layoutNativeCustom);
-        aperoNativeAdView.setLayoutLoading(R.layout.loading_native_medium);
-        aperoNativeAdView.setLayoutCustomNativeAd(layoutNativeCustom);
-        aperoNativeAdView.loadNativeAd(this, idNative,layoutNativeCustom,R.layout.loading_native_medium);
-        */
         aperoNativeAdView.loadNativeAd(this, idNative, new AperoAdCallback() {
             @Override
             public void onAdImpression() {
@@ -111,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        AperoAd.getInstance().loadBanner(this, idBanner);
         AperoBannerAdView bannerAdView = findViewById(R.id.bannerView);
         bannerAdView.loadBanner(this, idBanner, new AperoAdCallback() {
             @Override

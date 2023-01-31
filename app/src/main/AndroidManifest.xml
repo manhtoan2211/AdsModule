@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.andmoduleads">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,39 +27,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter tools:ignore="AppLinkUrlError">
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:mimeType="application/pdf" />
-                <data android:mimeType="application/vnd.ms-word" />
-                <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
-                <data android:mimeType="application/vnd.openxmlformats-officedocument.presentationml.presentation" />
-                <data android:mimeType="application/vnd.ms-word.document.macroenabled.12" />
-                <data android:mimeType="application/msword" />
-                <data android:mimeType="application/vnd.ms-word.template.macroenabled.12" />
-                <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.template" />
-                <data android:mimeType="application/vnd.ms-excel.sheet.macroenabled.12" />
-                <data android:mimeType="application/vnd.ms-excel" />
-                <data android:mimeType="application/vnd.ms-excel.addin.macroenabled.12" />
-                <data android:mimeType="application/vnd.ms-excel.template.macroenabled.12" />
-                <data android:mimeType="application/vnd.openxmlformats-officedocument.spreadsheetml.template" />
-                <data android:mimeType="application/vnd.ms-powerpoint" />
-                <data android:mimeType="application/vnd.openxmlformats-officedocument.presentationml.template" />
-                <data android:mimeType="application/vnd.ms-powerpoint.presentation.macroenabled.12" />
-                <data android:mimeType="application/vnd.openxmlformats-officedocument.presentationml.slideshow" />
-                <data android:mimeType="application/vnd.ms-powerpoint.slideshow.macroenabled.12" />
-            </intent-filter>
         </activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admod_app_id" />
+            android:value="${ad_app_id}" />
         <meta-data
             android:name="applovin.sdk.key"
             android:value="3N4Mt8SNhOzkQnGb9oHsRRG1ItybcZDpJWN1fVAHLdRagxP-_k_ZXVaMAdMe5Otsmp6qJSXskfsrtakfRmPAGW" />

@@ -45,7 +45,6 @@ public class SplashActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        loadSplash();
                         loadSplash();
                     }
                 });
@@ -101,7 +100,8 @@ public class SplashActivity extends AppCompatActivity {
         AperoAd.getInstance().setInitCallback(new AperoInitCallback() {
             @Override
             public void initAdSuccess() {
-                AperoAd.getInstance().loadSplashInterstitialAds(SplashActivity.this, idAdSplash, 30000, 5000, true, adCallback);
+                /*AperoAd.getInstance().loadSplashInterstitialAds(SplashActivity.this, idAdSplash, 30000, 5000, true, adCallback);*/
+                loadAdmobAd();
             }
         });
 
@@ -167,7 +167,6 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-//        AppOpenManager.getInstance().removeFullScreenContentCallback();
         super.onDestroy();
     }
 }

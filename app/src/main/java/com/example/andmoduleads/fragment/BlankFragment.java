@@ -46,14 +46,6 @@ public class BlankFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         button =    view.findViewById(R.id.btnNextFragment);
         button.setEnabled(false);
-//        Admob.getInstance().getInterstitialAds(getContext(), getString(R.string.admod_interstitial_id), new AdCallback() {
-//            @Override
-//            public void onInterstitialLoad(InterstitialAd interstitialAd) {
-//                super.onInterstitialLoad(interstitialAd);
-//                mInterstitialAd = interstitialAd;
-//                button.setEnabled(true);
-//            }
-//        });
         View view1 = view.findViewById(R.id.include).getRootView();
         String idBanner;
         if (AperoAd.getInstance().getMediationProvider() == AperoAdConfig.PROVIDER_ADMOB) {
@@ -79,7 +71,6 @@ public class BlankFragment extends Fragment {
             });
         });
 
-//        Admob.getInstance().loadNativeFragment(getActivity(),getString(R.string.admod_native_id),view);
         FrameLayout flPlaceHolder = view.findViewById(R.id.fl_adplaceholder);
         ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.shimmer_container_native);
         AperoAd.getInstance().loadNativeAd(requireActivity(), getString(R.string.admod_native_id), com.ads.control.R.layout.custom_native_admob_free_size, flPlaceHolder, shimmerFrameLayout);

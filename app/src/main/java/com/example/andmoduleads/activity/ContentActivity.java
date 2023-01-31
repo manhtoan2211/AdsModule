@@ -21,7 +21,6 @@ public class ContentActivity extends AppCompatActivity {
 
 
         showFragment(new BlankFragment(),"BlankFragment");
-//        showFragment(new InlineBannerFragment(),"InlineBannerFragment");
     }
 
 
