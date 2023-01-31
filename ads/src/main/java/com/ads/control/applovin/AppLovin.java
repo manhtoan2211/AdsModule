@@ -20,7 +20,6 @@ import com.ads.control.R;
 import com.ads.control.billing.AppPurchase;
 import com.ads.control.dialog.PrepareLoadingAdsDialog;
 import com.ads.control.funtion.AdCallback;
-import com.ads.control.event.AperoAdjust;
 import com.ads.control.event.AperoLogEventManager;
 import com.ads.control.funtion.AdType;
 import com.ads.control.util.SharePreferenceUtils;

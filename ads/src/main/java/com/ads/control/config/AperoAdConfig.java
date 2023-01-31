@@ -22,15 +22,6 @@ public class AperoAdConfig {
     private boolean isVariantDev = false;
 
     /**
-     * adjustConfig enable adjust and setup adjust token
-     */
-    private AdjustConfig adjustConfig;
-
-    /**
-     * appsflyerConfig enable Appsflyer and setup dev key
-     */
-    private AppsflyerConfig appsflyerConfig;
-    /**
      * eventNamePurchase push event to adjust when user purchased
      */
     private String eventNamePurchase = "";
@@ -73,22 +64,6 @@ public class AperoAdConfig {
         this.isVariantDev = environment.equals(ENVIRONMENT_DEBUG);
     }
 
-    public AdjustConfig getAdjustConfig() {
-        return adjustConfig;
-    }
-
-    public void setAdjustConfig(AdjustConfig adjustConfig) {
-        this.adjustConfig = adjustConfig;
-    }
-
-    public AppsflyerConfig getAppsflyerConfig() {
-        return appsflyerConfig;
-    }
-
-    public void setAppsflyerConfig(AppsflyerConfig appsflyerConfig) {
-        this.appsflyerConfig = appsflyerConfig;
-    }
-
     public String getEventNamePurchase() {
         return eventNamePurchase;
     }
@@ -126,18 +101,6 @@ public class AperoAdConfig {
 
     public Boolean isEnableAdResume() {
         return enableAdResume;
-    }
-
-    public Boolean isEnableAdjust() {
-        if (adjustConfig == null)
-            return false;
-        return adjustConfig.isEnableAdjust();
-    }
-
-    public boolean isEnableAppsflyer() {
-        if (appsflyerConfig == null)
-            return false;
-        return appsflyerConfig.isEnableAppsflyer();
     }
 
     public int getIntervalInterstitialAd() {

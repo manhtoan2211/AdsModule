@@ -9,10 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.ads.control.ads.AperoAd;
-import com.ads.control.config.AperoAdConfig;
 import com.ads.control.ads.nativeAds.AperoAdPlacer;
 import com.ads.control.ads.nativeAds.AperoAdAdapter;
 import com.ads.control.ads.wrapper.ApAdValue;
+import com.ads.control.config.AperoAdConfig;
 import com.example.andmoduleads.R;
 import com.example.andmoduleads.adapter.ListSimpleAdapter;
 

@@ -24,8 +24,6 @@ import com.ads.control.R;
 import com.ads.control.billing.AppPurchase;
 import com.ads.control.dialog.PrepareLoadingAdsDialog;
 import com.ads.control.dialog.ResumeLoadingDialog;
-import com.ads.control.event.AperoAdjust;
-import com.ads.control.event.AperoAppsflyer;
 import com.ads.control.event.AperoLogEventManager;
 import com.ads.control.funtion.AdType;
 import com.google.android.gms.ads.AdActivity;

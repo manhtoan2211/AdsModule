@@ -16,7 +16,7 @@ public abstract class AdsMultiDexApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        listTestDevice = new ArrayList<String>();
+        listTestDevice = new ArrayList<>();
         aperoAdConfig = new AperoAdConfig(this);
         if (SharePreferenceUtils.getInstallTime(this) == 0) {
             SharePreferenceUtils.setInstallTime(this);

@@ -16,16 +16,15 @@ import com.ads.control.admob.Admob;
 import com.ads.control.admob.AppOpenManager;
 import com.ads.control.ads.AperoAd;
 import com.ads.control.ads.AperoAdCallback;
-import com.ads.control.config.AperoAdConfig;
 import com.ads.control.ads.bannerAds.AperoBannerAdView;
 import com.ads.control.ads.nativeAds.AperoNativeAdView;
 import com.ads.control.ads.wrapper.ApAdError;
 import com.ads.control.ads.wrapper.ApInterstitialAd;
 import com.ads.control.ads.wrapper.ApRewardAd;
 import com.ads.control.billing.AppPurchase;
+import com.ads.control.config.AperoAdConfig;
 import com.ads.control.dialog.DialogExitApp1;
 import com.ads.control.dialog.InAppDialog;
-import com.ads.control.event.AperoAdjust;
 import com.ads.control.funtion.AdCallback;
 import com.ads.control.funtion.DialogExitListener;
 import com.ads.control.funtion.PurchaseListener;
@@ -229,11 +228,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onTrackSimpleEventClick(View v) {
-        AperoAdjust.onTrackEvent(EVENT_TOKEN_SIMPLE);
+        //AperoAdjust.onTrackEvent(EVENT_TOKEN_SIMPLE);
     }
 
     public void onTrackRevenueEventClick(View v) {
-        AperoAdjust.onTrackRevenue(EVENT_TOKEN_REVENUE, 1f, "EUR");
+        //AperoAdjust.onTrackRevenue(EVENT_TOKEN_REVENUE, 1f, "EUR");
     }
 
 

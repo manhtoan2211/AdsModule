@@ -20,14 +20,10 @@ public class AperoLogEventManager {
 
     public static void logPaidAdImpression(Context context, AdValue adValue, String adUnitId, String mediationAdapterClassName, AdType adType) {
         logEventWithAds(context, (float) adValue.getValueMicros(), adValue.getPrecisionType(), adUnitId, mediationAdapterClassName, AperoAdConfig.PROVIDER_ADMOB);
-        AperoAdjust.pushTrackEventAdmob(adValue);
-        AperoAppsflyer.getInstance().pushTrackEventAdmob(adValue, adUnitId, adType);
     }
 
     public static void logPaidAdImpression(Context context, MaxAd adValue, AdType adType) {
         logEventWithAds(context, (float) adValue.getRevenue(), 0, adValue.getAdUnitId(), adValue.getNetworkName(), AperoAdConfig.PROVIDER_MAX);
-        AperoAdjust.pushTrackEventApplovin(adValue, context);
-        AperoAppsflyer.getInstance().pushTrackEventApplovin(adValue, adType);
     }
 
     private static void logEventWithAds(Context context, float revenue, int precision, String adUnitId, String network, int mediationProvider) {
@@ -73,8 +69,6 @@ public class AperoLogEventManager {
         params.putString("adunitid", adunitid);
         params.putString("network", network);
 
-
-        AperoAdjust.logPaidAdImpressionValue(value, "USD");
         FirebaseAnalyticsUtil.logPaidAdImpressionValue(context, params, mediationProvider);
 
         FacebookEventUtils.logPaidAdImpressionValue(context, params, mediationProvider);
@@ -135,35 +129,34 @@ public class AperoLogEventManager {
 
 
     public static void setEventNamePurchaseAdjust(String eventNamePurchase) {
-        AperoAdjust.setEventNamePurchase(eventNamePurchase);
+
     }
 
     public static void trackAdRevenue(String id) {
-        AperoAdjust.trackAdRevenue(id);
+
     }
 
     public static void onTrackEvent(String eventName) {
-        AperoAdjust.onTrackEvent(eventName);
+
     }
 
     public static void onTrackEvent(String eventName, String id) {
-        AperoAdjust.onTrackEvent(eventName, id);
+
     }
 
     public static void onTrackRevenue(String eventName, float revenue, String currency) {
-        AperoAdjust.onTrackRevenue(eventName, revenue, currency);
+
     }
 
     public static void onTrackRevenuePurchase(float revenue, String currency, String idPurchase, int typeIAP) {
-        AperoAdjust.onTrackRevenuePurchase(revenue, currency);
-        AperoAppsflyer.getInstance().onTrackRevenuePurchase(revenue, currency, idPurchase, typeIAP);
+
     }
 
     public static void pushTrackEventAdmob(AdValue adValue) {
-        AperoAdjust.pushTrackEventAdmob(adValue);
+
     }
 
     public static void pushTrackEventApplovin(MaxAd ad, Context context) {
-        AperoAdjust.pushTrackEventApplovin(ad, context);
+
     }
 }

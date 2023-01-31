@@ -1,14 +1,13 @@
 package com.example.andmoduleads;
 
 import com.ads.control.ads.AperoAd;
-import com.ads.control.config.AdjustConfig;
-import com.ads.control.config.AperoAdConfig;
 import com.ads.control.application.AdsMultiDexApplication;
 import com.ads.control.applovin.AppLovin;
 import com.ads.control.applovin.AppOpenMax;
 import com.ads.control.billing.AppPurchase;
 import com.ads.control.admob.Admob;
 import com.ads.control.admob.AppOpenManager;
+import com.ads.control.config.AperoAdConfig;
 import com.example.andmoduleads.activity.MainActivity;
 import com.example.andmoduleads.activity.SplashActivity;
 
@@ -44,22 +43,11 @@ public class MyApplication extends AdsMultiDexApplication {
         storageCommon = new StorageCommon();
         initBilling();
         initAds();
-
     }
 
     private void initAds() {
         String environment = BuildConfig.DEBUG ? AperoAdConfig.ENVIRONMENT_DEBUG : AperoAdConfig.ENVIRONMENT_PRODUCTION;
         aperoAdConfig = new AperoAdConfig(this, AperoAdConfig.PROVIDER_ADMOB, environment);
-
-        // Optional: setup Adjust event
-        AdjustConfig adjustConfig = new AdjustConfig(true,ADJUST_TOKEN);
-        adjustConfig.setEventAdImpression(EVENT_AD_IMPRESSION_ADJUST);
-        adjustConfig.setEventNamePurchase(EVENT_PURCHASE_ADJUST);
-        aperoAdConfig.setAdjustConfig(adjustConfig);
-
-        // Optional: setup Appsflyer event
-//        AppsflyerConfig appsflyerConfig = new AppsflyerConfig(true,APPSFLYER_TOKEN);
-//        aperoAdConfig.setAppsflyerConfig(appsflyerConfig);
 
         // Optional: enable ads resume
         aperoAdConfig.setIdAdResume(BuildConfig.AD_APPOPEN_RESUME);
