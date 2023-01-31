@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         loadAdInterstitial();
-
+        loadAdReward();
         findViewById(R.id.btShowAds).setOnClickListener(v -> {
             if (mInterstitialAd.isReady()) {
                 AperoAd.getInstance().showInterstitialAdByTimes(this, mInterstitialAd, new AperoAdCallback() {
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 return;
             }
-            rewardAd = AperoAd.getInstance().getRewardAd(this,  BuildConfig.AD_REWARD);
+            loadAdReward();
         });
 
         Button btnIAP = findViewById(R.id.btIap);
@@ -208,15 +208,9 @@ public class MainActivity extends AppCompatActivity {
         mInterstitialAd = AperoAd.getInstance().getInterstitialAds(this, idInter);
     }
 
-
-    public void onTrackSimpleEventClick(View v) {
-        //AperoAdjust.onTrackEvent(EVENT_TOKEN_SIMPLE);
+    private void loadAdReward() {
+        rewardAd = AperoAd.getInstance().getRewardAd(this,  BuildConfig.AD_REWARD);
     }
-
-    public void onTrackRevenueEventClick(View v) {
-        //AperoAdjust.onTrackRevenue(EVENT_TOKEN_REVENUE, 1f, "EUR");
-    }
-
 
     @Override
     protected void onResume() {
