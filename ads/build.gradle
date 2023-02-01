@@ -1,4 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+group = 'com.github.manhtoan2211'
+version = '1.0.0'
 
 android {
     compileSdkVersion 31
@@ -67,4 +71,18 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:15.2.0'
 
     implementation 'com.airbnb.android:lottie:5.0.2'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.manhtoan2211'
+                artifactId = 'AdsModule'
+                version = '1.0.0'
+            }
+        }
+    }
 }
