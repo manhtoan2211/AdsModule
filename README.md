@@ -203,7 +203,7 @@ auto load and show native contains loading
 in layout XML
 ~~~
       <com.ads.control.ads.nativeAds.NativeAdsView
-        android:id="@+id/aperoNativeAds"
+        android:id="@+id/nativeAdsView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_150sdp"
         android:background="@drawable/bg_card_ads"
@@ -214,7 +214,7 @@ in layout XML
 ~~~
 Call load native ad
 ~~~
- loadNativeAd.loadNativeAd(this, idNative);
+ nativeAdsView.loadNativeAd(this, idNative);
 ~~~
 Load Ad native for recyclerView
 ~~~~
