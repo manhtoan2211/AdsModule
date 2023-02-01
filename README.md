@@ -79,7 +79,7 @@ class App : AdsMultiDexApplication(){
     public void onCreate() {
         super.onCreate();
 	...
-        String environment = BuildConfig.DEBUG ? AperoAdConfig.ENVIRONMENT_DEBUG : AperoAdConfig.ENVIRONMENT_PRODUCTION;
+        String environment = BuildConfig.DEBUG ? AdsConfig.ENVIRONMENT_DEBUG : AdsConfig.ENVIRONMENT_PRODUCTION;
         adsConfig = new AdsConfig(this, environment);
 
         // Optional: enable ads resume
@@ -140,7 +140,7 @@ Load ad interstital before show
 Show and auto release ad interstitial
 ~~~
          if (mInterstitialAd.isReady()) {
-                CustomAds.getInstance().forceShowInterstitial(this, mInterstitialAd, new AperoAdCallback() {
+                CustomAds.getInstance().forceShowInterstitial(this, mInterstitialAd, new AdsCallback() {
 			@Override
 			public void onNextAction() {
 			    super.onNextAction();
@@ -235,7 +235,7 @@ Get and show reward
   ApRewardAd rewardAd = CustomAds.getInstance().getRewardAd(this, idAdReward);
 
    if (rewardAd != null && rewardAd.isReady()) {
-                CustomAds.getInstance().forceShowRewardAd(this, rewardAd, new AperoAdCallback());
+                CustomAds.getInstance().forceShowRewardAd(this, rewardAd, new AdsCallback());
             }
 });
 ~~~
