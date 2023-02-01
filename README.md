@@ -1,20 +1,17 @@
 
-# AperoModuleAds
-This is SDK ads by. It has built in some sdk for easy use like
+# AdsModule
+This is SDK ads custom. It has built in some sdk for easy use like
 - Admob
-- MAX Mediation(Applovin)
 - Google Billing
-- Adjust
-- Appsflyer
 - Firebase auto log tracking event, tROAS
 
 # Import Module
 ~~~
 	maven { url 'https://jitpack.io' }
-	implementation 'com.github.AperoVN:AperoModuleAds:5.5.1'
+	implementation 'com.github.manhtoan2211:AdsModule:1.0.0'
 ~~~	 
 # Summary
-* [Setup AperoAd](#setup_aperoad)
+* [Setup CustomAds](#setup_aperoad)
 	* [Setup id ads](#set_up_ads)
 	* [Config ads](#config_ads)
 	* [Ads Formats](#ads_formats)
@@ -22,7 +19,7 @@ This is SDK ads by. It has built in some sdk for easy use like
 * [Billing App](#billing_app)
 * [Ads rule](#ads_rule)
 
-# <a id="setup_aperoad"></a>Setup AperoAd
+# <a id="setup_aperoad"></a>Setup CustomAds
 ## <a id="set_up_ads"></a>Setup enviroment with id ads for project
 
 We recommend you to setup 2 environments for your project, and only use test id during development, ids from your admob only use when needed and for publishing to Google Store
@@ -31,23 +28,38 @@ We recommend you to setup 2 environments for your project, and only use test id 
 * appDev: using id admob test while dev
 * appProd: use ids from your admob,  build release (build file .aab)
 
-~~~    
-      productFlavors {
-      appDev {
-              manifestPlaceholders = [ ad_app_id:"AD_APP_ID_TEST" ]
-              buildConfigField "String", "ads_inter_turn_on", "\"AD_ID_INTERSTIAL_TEST\""
-              buildConfigField "String", "ads_inter_turn_off", "\"AD_ID_INTERSTIAL_TEST\""
-	      buildConfigField "Boolean", "build_debug", "true"
-           }
-       appProd {
-            // ADS CONFIG BEGIN (required)
-               manifestPlaceholders = [ ad_app_id:"AD_APP_ID" ]
-               buildConfigField "String", "ads_inter_splash", "\"AD_ID_INTERSTIAL\""
-               buildConfigField "String", "ads_inter_turn_on", "\"AD_ID_INTERSTIAL\""
-	       buildConfigField "Boolean", "build_debug", "false"
-            // ADS CONFIG END (required)
-           }
-      }
+~~~   
+buildTypes {
+	def ADS_INTER_SPLASH_ID = "AD_INTERSTITIAL_SPLASH"
+        def ADS_BANNER_ID = "AD_BANNER"
+        def ADS_REWARD_ID = "AD_REWARD"
+        def ADS_REWARD_INTER_ID = "AD_REWARD_INTER"
+        def ADS_RESUME_ID = "AD_APPOPEN_RESUME"
+        def ADS_NATIVE_ID = "AD_NATIVE"
+        def ADS_OPEN_ID = "ADS_OPEN_APP"
+
+        debug {
+            manifestPlaceholders = [ad_app_id:"ca-app-pub-3940256099942544~3347511713"]
+            buildConfigField "String", ADS_INTER_SPLASH_ID, "\"ca-app-pub-3940256099942544/1033173712\""
+            buildConfigField "String", ADS_BANNER_ID, "\"ca-app-pub-3940256099942544/6300978111\""
+            buildConfigField "String", ADS_REWARD_ID, "\"ca-app-pub-3940256099942544/5224354917\""
+            buildConfigField "String", ADS_REWARD_INTER_ID, "\"ca-app-pub-3940256099942544/5354046379\""
+            buildConfigField "String", ADS_RESUME_ID, "\"ca-app-pub-3940256099942544/3419835294\""
+            buildConfigField "String", ADS_NATIVE_ID, "\"ca-app-pub-3940256099942544/2247696110\""
+            buildConfigField "String", ADS_OPEN_ID, "\"ca-app-pub-3940256099942544/3419835294\""
+        }
+
+        release {
+	   //Your Id adding here
+            manifestPlaceholders = [ad_app_id:"ca-app-pub-3940256099942544~3347511713"]
+            buildConfigField "String", ADS_INTER_SPLASH_ID, "\"ca-app-pub-3940256099942544/1033173712\""
+            buildConfigField "String", ADS_BANNER_ID, "\"ca-app-pub-3940256099942544/6300978111\""
+            buildConfigField "String", ADS_REWARD_ID, "\"ca-app-pub-3940256099942544/5224354917\""
+            buildConfigField "String", ADS_REWARD_INTER_ID, "\"ca-app-pub-3940256099942544/5354046379\""
+            buildConfigField "String", ADS_RESUME_ID, "\"ca-app-pub-3940256099942544/3419835294\""
+            buildConfigField "String", ADS_NATIVE_ID, "\"ca-app-pub-3940256099942544/2247696110\""
+            buildConfigField "String", ADS_OPEN_ID, "\"ca-app-pub-3940256099942544/3419835294\""
+        }
 ~~~
 AndroidManiafest.xml
 ~~~
@@ -58,7 +70,7 @@ AndroidManiafest.xml
 ## <a id="config_ads"></a>Config ads
 Create class Application
 
-Configure your mediation here. using PROVIDER_ADMOB or PROVIDER_MAX
+Configure your mediation here.
 
 *** Note:Cannot use id ad test for production enviroment 
 ~~~
@@ -68,31 +80,24 @@ class App : AdsMultiDexApplication(){
         super.onCreate();
 	...
         String environment = BuildConfig.DEBUG ? AperoAdConfig.ENVIRONMENT_DEBUG : AperoAdConfig.ENVIRONMENT_PRODUCTION;
-        aperoAdConfig = new AperoAdConfig(this, AperoAdConfig.PROVIDER_ADMOB, environment);
-
-        // Optional: setup Adjust event
-        AdjustConfig adjustConfig = new AdjustConfig(true,ADJUST_TOKEN);
-        adjustConfig.setEventAdImpression(EVENT_AD_IMPRESSION_ADJUST);
-        adjustConfig.setEventNamePurchase(EVENT_PURCHASE_ADJUST);
-        aperoAdConfig.setAdjustConfig(adjustConfig);
-
-        // Optional: setup Appsflyer event
-        AppsflyerConfig appsflyerConfig = new AppsflyerConfig(true,APPSFLYER_TOKEN);
-        aperoAdConfig.setAppsflyerConfig(appsflyerConfig);
+        adsConfig = new AdsConfig(this, environment);
 
         // Optional: enable ads resume
-        aperoAdConfig.setIdAdResume(BuildConfig.ads_open_app);
+        adsConfig.setIdAdResume(BuildConfig.AD_APPOPEN_RESUME);
 
         // Optional: setup list device test - recommended to use
-        listTestDevice.add(DEVICE_ID_TEST);
-        aperoAdConfig.setListDeviceTest(listTestDevice);
+        listTestDevice.add("EC25F576DA9B6CE74778B268CB87E431");
+        adsConfig.setListDeviceTest(listTestDevice);
+        adsConfig.setIntervalInterstitialAd(15);
 
-        AperoAd.getInstance().init(this, aperoAdConfig, false);
+        CustomAds.getInstance().init(this, adsConfig, false);
 
         // Auto disable ad resume after user click ads and back to app
         Admob.getInstance().setDisableAdResumeWhenClickAds(true);
         // If true -> onNextAction() is called right after Ad Interstitial showed
         Admob.getInstance().setOpenActivityAfterShowInterAds(false);
+
+        AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity.class);
 	}
 }
 ~~~
@@ -108,7 +113,7 @@ android:name=".App"
 ### Ad Splash Interstitial
 SplashActivity
 ~~~ 
-    AperoAdCallback adCallback = new AperoAdCallback() {
+    AdsCallback adCallback = new AdsCallback() {
         @Override
         public void onNextAction() {
             super.onNextAction();
@@ -118,10 +123,10 @@ SplashActivity
     };
 ~~~
 ~~~
-        AperoAd.getInstance().setInitCallback(new AperoInitCallback() {
+        CustomAds.getInstance().setInitCallback(new AdsInitCallback() {
             @Override
             public void initAdSuccess() {
-                AperoAd.getInstance().loadSplashInterstitialAds(SplashActivity.this, idAdSplash, TIME_OUT, TIME_DELAY_SHOW_AD, true, adCallback);
+                CustomAds.getInstance().loadSplashInterstitialAds(SplashActivity.this, idAdSplash, 30000, 5000, true, adCallback);
             }
         });
 ~~~
@@ -129,13 +134,13 @@ SplashActivity
 Load ad interstital before show
 ~~~
   private fun loadInterCreate() {
-	ApInterstitialAd mInterstitialAd = AperoAd.getInstance().getInterstitialAds(this, idInter);
+	ApInterstitialAd mInterstitialAd = CustomAds.getInstance().getInterstitialAds(this, idInter);
   }
 ~~~
 Show and auto release ad interstitial
 ~~~
          if (mInterstitialAd.isReady()) {
-                AperoAd.getInstance().forceShowInterstitial(this, mInterstitialAd, new AperoAdCallback() {
+                CustomAds.getInstance().forceShowInterstitial(this, mInterstitialAd, new AperoAdCallback() {
 			@Override
 			public void onNextAction() {
 			    super.onNextAction();
@@ -175,13 +180,13 @@ call load ad banner
 ~~~
 call load ad banner
 ~~~
-  AperoAd.getInstance().loadBanner(this, idBanner);
+  CustomAds.getInstance().loadBanner(this, idBanner);
 ~~~
 
 ### Ad Native
 Load ad native before show
 ~~~
-        AperoAd.getInstance().loadNativeAdResultCallback(this,ID_NATIVE_AD, com.ads.control.R.layout.custom_native_max_small,new AperoAdCallback(){
+        CustomAds.getInstance().loadNativeAdResultCallback(this,ID_NATIVE_AD, com.ads.control.R.layout.custom_native_max_small,new AdsCallback(){
             @Override
             public void onNativeAdLoaded(@NonNull ApNativeAd nativeAd) {
                 super.onNativeAdLoaded(nativeAd);
@@ -191,7 +196,7 @@ Load ad native before show
 ~~~
 Populate native ad to view
 ~~~
-	AperoAd.getInstance().populateNativeAdView(MainApplovinActivity.this,nativeAd,flParentNative,shimmerFrameLayout);
+	CustomAds.getInstance().populateNativeAdView(MainApplovinActivity.this,nativeAd,flParentNative,shimmerFrameLayout);
 ~~~
 auto load and show native contains loading
 
@@ -209,16 +214,16 @@ in layout XML
 ~~~
 Call load native ad
 ~~~
- aperoNativeAdView.loadNativeAd(this, idNative);
+ loadNativeAd.loadNativeAd(this, idNative);
 ~~~
 Load Ad native for recyclerView
 ~~~~
 	// ad native repeating interval
-	AperoAdAdapter     adAdapter = AperoAd.getInstance().getNativeRepeatAdapter(this, idNative, layoutCustomNative, com.ads.control.R.layout.layout_native_medium,
+	AdsAdapter adsAdapter = CustomAds.getInstance().getNativeRepeatAdapter(this, idNative, layoutCustomNative, com.ads.control.R.layout.layout_native_medium,
                 originalAdapter, listener, 4);
 	
 	// ad native fixed in position
-    	AperoAdAdapter   adAdapter = AperoAd.getInstance().getNativeFixedPositionAdapter(this, idNative, layoutCustomNative, com.ads.control.R.layout.layout_native_medium,
+    	AdsAdapter adsAdapter = CustomAds.getInstance().getNativeFixedPositionAdapter(this, idNative, layoutCustomNative, com.ads.control.R.layout.layout_native_medium,
                 originalAdapter, listener, 4);
 	
         recyclerView.setAdapter(adAdapter.getAdapter());
@@ -227,10 +232,10 @@ Load Ad native for recyclerView
 ### Ad Reward
 Get and show reward
 ~~~
-  ApRewardAd rewardAd = AperoAd.getInstance().getRewardAd(this, idAdReward);
+  ApRewardAd rewardAd = CustomAds.getInstance().getRewardAd(this, idAdReward);
 
    if (rewardAd != null && rewardAd.isReady()) {
-                AperoAd.getInstance().forceShowRewardAd(this, rewardAd, new AperoAdCallback());
+                CustomAds.getInstance().forceShowRewardAd(this, rewardAd, new AperoAdCallback());
             }
 });
 ~~~
@@ -240,7 +245,7 @@ App
   override fun onCreate() {
   	super.onCreate()
   	AppOpenManager.getInstance().enableAppResume()
-	aperoAdConfig.setIdAdResume(AppOpenManager.AD_UNIT_ID_TEST);
+	AdsConfig.setIdAdResume(AppOpenManager.AD_UNIT_ID_TEST);
 	...
   }
 	
