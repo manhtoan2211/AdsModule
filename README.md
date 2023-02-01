@@ -25,8 +25,8 @@ This is SDK ads custom. It has built in some sdk for easy use like
 We recommend you to setup 2 environments for your project, and only use test id during development, ids from your admob only use when needed and for publishing to Google Store
 * The name must be the same as the name of the marketing request
 * Config variant test and release in gradle
-* appDev: using id admob test while dev
-* appProd: use ids from your admob,  build release (build file .aab)
+* debug: using id admob test while dev
+* relese: use ids from your admob,  build release (build file .aab)
 
 ~~~   
 buildTypes {
