@@ -27,16 +27,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AperoAdPlacer {
-    String TAG = "AperoAdPlacer";
+public class AdsPlacer {
+    String TAG = "AdsPlacer";
     private HashMap<Integer, ApNativeAd> listAd = new HashMap<>();
     private List<Integer> listPositionAd = new ArrayList<>();
-    private AperoAdPlacerSettings settings;
+    private AdsPlacerSettings settings;
     private RecyclerView.Adapter adapterOriginal;
     private Activity activity;
     private int countLoadAd = 0;
 
-    public AperoAdPlacer(AperoAdPlacerSettings settings, RecyclerView.Adapter adapterOriginal, Activity activity) {
+    public AdsPlacer(AdsPlacerSettings settings, RecyclerView.Adapter adapterOriginal, Activity activity) {
         this.settings = settings;
         this.adapterOriginal = adapterOriginal;
         this.activity = activity;
@@ -79,11 +79,11 @@ public class AperoAdPlacer {
                             unifiedNativeAd.setOnPaidEventListener(new OnPaidEventListener() {
                                 @Override
                                 public void onPaidEvent(@NonNull AdValue adValue) {
-                                    AperoAdPlacer.this.onAdRevenuePaid(new ApAdValue(adValue));
+                                    AdsPlacer.this.onAdRevenuePaid(new ApAdValue(adValue));
                                 }
                             });
 
-                            AperoAdPlacer.this.onAdLoaded(pos);
+                            AdsPlacer.this.onAdLoaded(pos);
                             nativeAd.setAdmobNativeAd(unifiedNativeAd);
                             nativeAd.setStatus(StatusAd.AD_LOADED);
                             listAd.put(pos, nativeAd);
@@ -100,13 +100,13 @@ public class AperoAdPlacer {
                         @Override
                         public void onAdClicked() {
                             super.onAdClicked();
-                            AperoAdPlacer.this.onAdClicked();
+                            AdsPlacer.this.onAdClicked();
                         }
 
                         @Override
                         public void onAdImpression() {
                             super.onAdImpression();
-                            AperoAdPlacer.this.onAdImpression();
+                            AdsPlacer.this.onAdImpression();
                         }
                     });
                 });

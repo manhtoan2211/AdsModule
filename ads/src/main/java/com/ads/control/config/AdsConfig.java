@@ -5,7 +5,7 @@ import android.app.Application;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AperoAdConfig {
+public class AdsConfig {
 
     public static final String ENVIRONMENT_DEBUG = "debug";
     public static final String ENVIRONMENT_PRODUCTION = "release";
@@ -28,11 +28,11 @@ public class AperoAdConfig {
      */
     private int intervalInterstitialAd = 0;
 
-    public AperoAdConfig(Application application) {
+    public AdsConfig(Application application) {
         this.application = application;
     }
 
-    public AperoAdConfig(Application application, String environment) {
+    public AdsConfig(Application application, String environment) {
         this.isVariantDev = environment.equals(ENVIRONMENT_DEBUG);
         this.application = application;
     }

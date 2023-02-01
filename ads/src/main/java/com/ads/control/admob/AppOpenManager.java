@@ -24,7 +24,7 @@ import com.ads.control.R;
 import com.ads.control.billing.AppPurchase;
 import com.ads.control.dialog.PrepareLoadingAdsDialog;
 import com.ads.control.dialog.ResumeLoadingDialog;
-import com.ads.control.event.AperoLogEventManager;
+import com.ads.control.event.AdsLogEventManager;
 import com.ads.control.funtion.AdType;
 import com.google.android.gms.ads.AdActivity;
 import com.google.android.gms.ads.AdError;
@@ -225,7 +225,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         if (!isSplash) {
                             AppOpenManager.this.appResumeAd = ad;
                             AppOpenManager.this.appResumeAd.setOnPaidEventListener(adValue -> {
-                                AperoLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                                AdsLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                         adValue,
                                         ad.getAdUnitId(),
                                         ad.getResponseInfo()
@@ -235,7 +235,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         } else {
                             AppOpenManager.this.splashAd = ad;
                             AppOpenManager.this.splashAd.setOnPaidEventListener(adValue -> {
-                                AperoLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                                AdsLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                         adValue,
                                         ad.getAdUnitId(),
                                         ad.getResponseInfo()
@@ -457,7 +457,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                                 public void onAdClicked() {
                                     super.onAdClicked();
                                     if (currentActivity != null) {
-                                        AperoLogEventManager.logClickAdsEvent(currentActivity, splashAdId);
+                                        AdsLogEventManager.logClickAdsEvent(currentActivity, splashAdId);
                                         if (fullScreenContentCallback!= null) {
                                             fullScreenContentCallback.onAdClicked();
                                         }
@@ -551,7 +551,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         public void onAdClicked() {
                             super.onAdClicked();
                             if (currentActivity != null) {
-                                AperoLogEventManager.logClickAdsEvent(currentActivity, appResumeAdId);
+                                AdsLogEventManager.logClickAdsEvent(currentActivity, appResumeAdId);
                                 if (fullScreenContentCallback!= null) {
                                     fullScreenContentCallback.onAdClicked();
                                 }
@@ -607,7 +607,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                             AppOpenManager.this.splashAd = appOpenAd;
                             splashLoadTime = new Date().getTime();
                             appOpenAd.setOnPaidEventListener(adValue -> {
-                                AperoLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                                AdsLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                         adValue,
                                         appOpenAd.getAdUnitId(),
                                         appOpenAd.getResponseInfo()

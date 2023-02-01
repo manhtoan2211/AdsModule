@@ -1,5 +1,5 @@
 package com.ads.control.ads;
 
-public interface AperoInitCallback {
+public interface AdsInitCallback {
     void initAdSuccess();
 }

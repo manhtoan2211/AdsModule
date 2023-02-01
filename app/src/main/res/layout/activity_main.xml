@@ -7,7 +7,7 @@
     android:background="#FDA6A6"
     tools:context=".activity.MainActivity">
 
-    <com.ads.control.ads.nativeAds.AperoNativeAdView
+    <com.ads.control.ads.nativeAds.NativeAdsView
         android:id="@+id/aperoNativeAds"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_150sdp"
@@ -88,7 +88,7 @@
             android:text="Track Revenue adjust" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <com.ads.control.ads.bannerAds.AperoBannerAdView
+    <com.ads.control.ads.bannerAds.BannerAdsView
         android:id="@+id/bannerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

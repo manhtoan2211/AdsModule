@@ -10,25 +10,23 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.applovin.mediation.nativeAds.adPlacer.MaxRecyclerAdapter;
-
 public class AdmobRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public int TYPE_AD_VIEW = 0;
     private final int TYPE_CONTENT_VIEW = 1;
-    private final AperoAdPlacerSettings settings;
+    private final AdsPlacerSettings settings;
 
     private RecyclerView.Adapter adapterOriginal;
     private Activity activity;
-    private AperoAdPlacer adPlacer;
+    private AdsPlacer adPlacer;
     private AdapterDataObserver adapterDataObserver = new AdapterDataObserver();
 
-    public AdmobRecyclerAdapter(AperoAdPlacerSettings settings, RecyclerView.Adapter adapterOriginal, Activity activity) {
+    public AdmobRecyclerAdapter(AdsPlacerSettings settings, RecyclerView.Adapter adapterOriginal, Activity activity) {
         this.adapterOriginal = adapterOriginal;
         this.registerAdapterDataObserver(adapterDataObserver);
         this.activity = activity;
         this.settings = settings;
-        adPlacer = new AperoAdPlacer(settings, adapterOriginal, activity);
+        adPlacer = new AdsPlacer(settings, adapterOriginal, activity);
     }
 
     @NonNull

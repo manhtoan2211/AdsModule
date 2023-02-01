@@ -3,7 +3,6 @@ package com.ads.control.event;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.ads.control.config.AperoAdConfig;
 import com.facebook.appevents.AppEventsLogger;
 
 public class FacebookEventUtils {

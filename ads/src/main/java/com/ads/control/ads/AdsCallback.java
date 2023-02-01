@@ -6,10 +6,9 @@ import androidx.annotation.Nullable;
 import com.ads.control.ads.wrapper.ApAdError;
 import com.ads.control.ads.wrapper.ApInterstitialAd;
 import com.ads.control.ads.wrapper.ApNativeAd;
-import com.ads.control.ads.wrapper.ApRewardAd;
 import com.ads.control.ads.wrapper.ApRewardItem;
 
-public class AperoAdCallback {
+public class AdsCallback {
     public void onNextAction() {
     }
 

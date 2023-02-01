@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,16 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ads.control.admob.Admob;
 import com.ads.control.admob.AppOpenManager;
-import com.ads.control.ads.AperoAd;
-import com.ads.control.ads.AperoAdCallback;
-import com.ads.control.ads.bannerAds.AperoBannerAdView;
-import com.ads.control.ads.nativeAds.AperoNativeAdView;
+import com.ads.control.ads.AdsCallback;
+import com.ads.control.ads.CustomAds;
+import com.ads.control.ads.bannerAds.BannerAdsView;
+import com.ads.control.ads.nativeAds.NativeAdsView;
 import com.ads.control.ads.wrapper.ApAdError;
 import com.ads.control.ads.wrapper.ApInterstitialAd;
 import com.ads.control.ads.wrapper.ApRewardAd;
 import com.ads.control.billing.AppPurchase;
-import com.ads.control.config.AperoAdConfig;
-import com.ads.control.dialog.DialogExitApp1;
+import com.ads.control.dialog.DialogExitApp;
 import com.ads.control.dialog.InAppDialog;
 import com.ads.control.funtion.AdCallback;
 import com.ads.control.funtion.DialogExitListener;
@@ -45,16 +43,16 @@ public class MainActivity extends AppCompatActivity {
     private String idNative = "";
     private String idInter = "";
 
-    private AperoNativeAdView aperoNativeAdView;
+    private NativeAdsView nativeAdsView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        aperoNativeAdView = findViewById(R.id.aperoNativeAds);
+        nativeAdsView = findViewById(R.id.aperoNativeAds);
 
         configMediationProvider();
-        AperoAd.getInstance().setCountClickToShowAds(3);
+        CustomAds.getInstance().setCountClickToShowAds(3);
 
         AppOpenManager.getInstance().setEnableScreenContentCallback(true);
         AppOpenManager.getInstance().setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Sample integration native ads
          */
-        aperoNativeAdView.loadNativeAd(this, idNative, new AperoAdCallback() {
+        nativeAdsView.loadNativeAd(this, idNative, new AdsCallback() {
             @Override
             public void onAdImpression() {
                 super.onAdImpression();
@@ -96,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        AperoBannerAdView bannerAdView = findViewById(R.id.bannerView);
-        bannerAdView.loadBanner(this, idBanner, new AperoAdCallback() {
+        BannerAdsView bannerAdsView = findViewById(R.id.bannerView);
+        bannerAdsView.loadBanner(this, idBanner, new AdsCallback() {
             @Override
             public void onAdImpression() {
                 super.onAdImpression();
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         loadAdReward();
         findViewById(R.id.btShowAds).setOnClickListener(v -> {
             if (mInterstitialAd.isReady()) {
-                AperoAd.getInstance().showInterstitialAdByTimes(this, mInterstitialAd, new AperoAdCallback() {
+                CustomAds.getInstance().showInterstitialAdByTimes(this, mInterstitialAd, new AdsCallback() {
                     @Override
                     public void onNextAction() {
                         Log.i(TAG, "onNextAction: start content and finish main");
@@ -136,10 +134,11 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btForceShowAds).setOnClickListener(v -> {
             if (mInterstitialAd.isReady()) {
-                AperoAd.getInstance().forceShowInterstitial(this, mInterstitialAd, new AperoAdCallback() {
+                CustomAds.getInstance().forceShowInterstitial(this, mInterstitialAd, new AdsCallback() {
                     @Override
                     public void onNextAction() {
                         Log.i(TAG, "onAdClosed: start content and finish main");
+                        loadAdInterstitial();
                         startActivity(new Intent(MainActivity.this, SimpleListActivity.class));
                     }
 
@@ -166,10 +165,20 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btnShowReward).setOnClickListener(v -> {
             if (rewardAd != null && rewardAd.isReady()) {
-                AperoAd.getInstance().forceShowRewardAd(this, rewardAd, new AperoAdCallback() {
+                CustomAds.getInstance().forceShowRewardAd(this, rewardAd, new AdsCallback() {
                     @Override
                     public void onAdClosed() {
-                        super.onAdClosed();
+
+                    }
+
+                    @Override
+                    public void onAdFailedToShow(@Nullable ApAdError adError) {
+
+                    }
+
+                    @Override
+                    public void onNextAction() {
+
                     }
                 });
                 return;
@@ -205,11 +214,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadAdInterstitial() {
-        mInterstitialAd = AperoAd.getInstance().getInterstitialAds(this, idInter);
+        mInterstitialAd = CustomAds.getInstance().getInterstitialAds(this, idInter);
     }
 
     private void loadAdReward() {
-        rewardAd = AperoAd.getInstance().getRewardAd(this,  BuildConfig.AD_REWARD);
+        rewardAd = CustomAds.getInstance().getRewardAd(this,  BuildConfig.AD_REWARD);
     }
 
     @Override
@@ -239,15 +248,15 @@ public class MainActivity extends AppCompatActivity {
         if (unifiedNativeAd == null)
             return;
 
-        DialogExitApp1 dialogExitApp1 = new DialogExitApp1(this, unifiedNativeAd, 1);
-        dialogExitApp1.setDialogExitListener(new DialogExitListener() {
+        DialogExitApp dialogExitApp = new DialogExitApp(this, unifiedNativeAd, 1);
+        dialogExitApp.setDialogExitListener(new DialogExitListener() {
             @Override
             public void onExit(boolean exit) {
                 MainActivity.super.onBackPressed();
             }
         });
-        dialogExitApp1.setCancelable(false);
-        dialogExitApp1.show();
+        dialogExitApp.setCancelable(false);
+        dialogExitApp.show();
 
     }
 

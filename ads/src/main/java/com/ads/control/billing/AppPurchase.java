@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 
-import com.ads.control.event.AperoLogEventManager;
+import com.ads.control.event.AdsLogEventManager;
 import com.ads.control.funtion.BillingListener;
 import com.ads.control.funtion.PurchaseListener;
 import com.ads.control.funtion.UpdatePurchaseListener;
@@ -765,7 +765,7 @@ public class AppPurchase {
         //tracking adjust
         double price = getPriceWithoutCurrency(idPurchaseCurrent, typeIap);
         String currency = getCurrency(idPurchaseCurrent, typeIap);
-        AperoLogEventManager.onTrackRevenuePurchase((float) price, currency, idPurchaseCurrent, typeIap);
+        AdsLogEventManager.onTrackRevenuePurchase((float) price, currency, idPurchaseCurrent, typeIap);
 
         if (purchaseListener != null) {
             isPurchase = true;

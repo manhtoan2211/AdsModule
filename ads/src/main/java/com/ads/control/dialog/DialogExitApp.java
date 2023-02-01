@@ -15,7 +15,7 @@ import com.ads.control.R;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;
 
-public class DialogExitApp1 extends Dialog {
+public class DialogExitApp extends Dialog {
 
     private Context context;
     private FrameLayout frameLayout;
@@ -26,14 +26,14 @@ public class DialogExitApp1 extends Dialog {
     private TextView btnCancel;
     DialogExitListener dialogExitListener;
     int type;
-    public DialogExitApp1(Context context, NativeAd nativeAd,int type) {
+    public DialogExitApp(Context context, NativeAd nativeAd, int type) {
         super(context,android.R.style.Theme_Translucent_NoTitleBar);
         this.context = context;
         this.nativeAd = nativeAd;
         this.type = type;
     }
 
-    public DialogExitApp1(Context context, NativeAd nativeAd,int type,NativeAdView adView) {
+    public DialogExitApp(Context context, NativeAd nativeAd, int type, NativeAdView adView) {
         super(context,android.R.style.Theme_Translucent_NoTitleBar);
         this.context = context;
         this.nativeAd = nativeAd;

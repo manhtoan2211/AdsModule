@@ -13,14 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.ads.control.admob.Admob;
-import com.ads.control.ads.AperoAd;
-import com.ads.control.config.AperoAdConfig;
+import com.ads.control.ads.CustomAds;
 import com.ads.control.funtion.AdCallback;
 import com.example.andmoduleads.R;
 import com.example.andmoduleads.activity.ContentActivity;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
-
 
 public class BlankFragment extends Fragment {
     InterstitialAd mInterstitialAd;
@@ -49,7 +47,7 @@ public class BlankFragment extends Fragment {
         View view1 = view.findViewById(R.id.include).getRootView();
         String idBanner = getString(R.string.admod_banner_id);
 
-        AperoAd.getInstance().loadBannerFragment(requireActivity(), idBanner, view1, new AdCallback() {
+        CustomAds.getInstance().loadBannerFragment(requireActivity(), idBanner, view1, new AdCallback() {
             @Override
             public void onAdClicked() {
                 super.onAdClicked();
@@ -68,6 +66,6 @@ public class BlankFragment extends Fragment {
 
         FrameLayout flPlaceHolder = view.findViewById(R.id.fl_adplaceholder);
         ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.shimmer_container_native);
-        AperoAd.getInstance().loadNativeAd(requireActivity(), getString(R.string.admod_native_id), com.ads.control.R.layout.custom_native_admob_free_size, flPlaceHolder, shimmerFrameLayout);
+        CustomAds.getInstance().loadNativeAd(requireActivity(), getString(R.string.admod_native_id), com.ads.control.R.layout.custom_native_admob_free_size, flPlaceHolder, shimmerFrameLayout);
     }
 }

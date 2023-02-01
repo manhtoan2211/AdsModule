@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.ads.control.config.AperoAdConfig;
 import com.ads.control.funtion.AdType;
 import com.ads.control.util.AppUtil;
 import com.ads.control.util.SharePreferenceUtils;
@@ -14,9 +13,9 @@ import com.google.android.gms.ads.AdValue;
 /**
  * Created by lamlt on 12/09/2022.
  */
-public class AperoLogEventManager {
+public class AdsLogEventManager {
 
-    private static final String TAG = "AperoLogEventManager";
+    private static final String TAG = "AdsLogEventManager";
 
     public static void logPaidAdImpression(Context context, AdValue adValue, String adUnitId, String mediationAdapterClassName, AdType adType) {
         logEventWithAds(context, (float) adValue.getValueMicros(), adValue.getPrecisionType(), adUnitId, mediationAdapterClassName);

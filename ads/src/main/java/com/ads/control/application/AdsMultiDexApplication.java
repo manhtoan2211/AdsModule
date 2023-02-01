@@ -2,7 +2,7 @@ package com.ads.control.application;
 
 import androidx.multidex.MultiDexApplication;
 
-import com.ads.control.config.AperoAdConfig;
+import com.ads.control.config.AdsConfig;
 import com.ads.control.util.AppUtil;
 import com.ads.control.util.SharePreferenceUtils;
 
@@ -11,13 +11,13 @@ import java.util.List;
 
 public abstract class AdsMultiDexApplication extends MultiDexApplication {
 
-    protected AperoAdConfig aperoAdConfig;
+    protected AdsConfig adsConfig;
     protected List<String> listTestDevice ;
     @Override
     public void onCreate() {
         super.onCreate();
         listTestDevice = new ArrayList<>();
-        aperoAdConfig = new AperoAdConfig(this);
+        adsConfig = new AdsConfig(this);
         if (SharePreferenceUtils.getInstallTime(this) == 0) {
             SharePreferenceUtils.setInstallTime(this);
         }

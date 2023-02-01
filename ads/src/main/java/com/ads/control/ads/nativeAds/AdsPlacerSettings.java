@@ -1,21 +1,19 @@
 package com.ads.control.ads.nativeAds;
 
-import android.util.Log;
-
-public class AperoAdPlacerSettings {
+public class AdsPlacerSettings {
 
     private String adUnitId;
     private int positionFixAd = -1;
     private boolean isRepeatingAd = false;
     private int layoutCustomAd = -1;
     private int layoutAdPlaceHolder = -1;
-    private AperoAdPlacer.Listener listener;
-    public AperoAdPlacerSettings(String adUnitId, int layoutCustomAd, int layoutPlaceHolderAd) {
+    private AdsPlacer.Listener listener;
+    public AdsPlacerSettings(String adUnitId, int layoutCustomAd, int layoutPlaceHolderAd) {
         this.adUnitId = adUnitId;
         this.layoutCustomAd = layoutCustomAd;
         this.layoutAdPlaceHolder = layoutPlaceHolderAd;
     }
-    public AperoAdPlacerSettings(  int layoutCustomAd, int layoutPlaceHolderAd) {
+    public AdsPlacerSettings(int layoutCustomAd, int layoutPlaceHolderAd) {
         this.adUnitId = adUnitId;
         this.layoutCustomAd = layoutCustomAd;
         this.layoutAdPlaceHolder = layoutPlaceHolderAd;
@@ -26,11 +24,11 @@ public class AperoAdPlacerSettings {
         isRepeatingAd = false;
     }
 
-    public AperoAdPlacer.Listener getListener() {
+    public AdsPlacer.Listener getListener() {
         return listener;
     }
 
-    public void setListener(AperoAdPlacer.Listener listener) {
+    public void setListener(AdsPlacer.Listener listener) {
         this.listener = listener;
     }
 

@@ -9,13 +9,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ads.control.admob.AppOpenManager;
-import com.ads.control.ads.AperoAd;
-import com.ads.control.ads.AperoAdCallback;
-import com.ads.control.ads.AperoInitCallback;
+import com.ads.control.ads.CustomAds;
+import com.ads.control.ads.AdsCallback;
+import com.ads.control.ads.AdsInitCallback;
 import com.ads.control.ads.wrapper.ApAdError;
 import com.ads.control.ads.wrapper.ApNativeAd;
 import com.ads.control.billing.AppPurchase;
-import com.ads.control.config.AperoAdConfig;
 import com.ads.control.funtion.BillingListener;
 import com.example.andmoduleads.BuildConfig;
 import com.example.andmoduleads.R;
@@ -53,7 +52,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-    AperoAdCallback adCallback = new AperoAdCallback() {
+    AdsCallback adCallback = new AdsCallback() {
         @Override
         public void onAdFailedToLoad(@Nullable ApAdError i) {
             super.onAdFailedToLoad(i);
@@ -94,10 +93,10 @@ public class SplashActivity extends AppCompatActivity {
 
     private void loadSplash() {
         Log.d(TAG, "onCreate: show splash ads");
-        AperoAd.getInstance().setInitCallback(new AperoInitCallback() {
+        CustomAds.getInstance().setInitCallback(new AdsInitCallback() {
             @Override
             public void initAdSuccess() {
-                AperoAd.getInstance().loadSplashInterstitialAds(SplashActivity.this, idAdSplash, 30000, 5000, true, adCallback);
+                CustomAds.getInstance().loadSplashInterstitialAds(SplashActivity.this, idAdSplash, 30000, 5000, true, adCallback);
             }
         });
 
@@ -146,7 +145,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.e(TAG, "Splash onPause: " );
-        AperoAd.getInstance().onCheckShowSplashWhenFail(this, adCallback, 1000);
+        CustomAds.getInstance().onCheckShowSplashWhenFail(this, adCallback, 1000);
     }
 
     @Override

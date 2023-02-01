@@ -8,11 +8,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.ads.control.ads.AperoAd;
-import com.ads.control.ads.nativeAds.AperoAdPlacer;
-import com.ads.control.ads.nativeAds.AperoAdAdapter;
+import com.ads.control.ads.CustomAds;
+import com.ads.control.ads.nativeAds.AdsPlacer;
+import com.ads.control.ads.nativeAds.AdsAdapter;
 import com.ads.control.ads.wrapper.ApAdValue;
-import com.ads.control.config.AperoAdConfig;
 import com.example.andmoduleads.R;
 import com.example.andmoduleads.adapter.ListSimpleAdapter;
 
@@ -21,13 +20,13 @@ import java.util.List;
 
 public class SimpleListActivity extends AppCompatActivity {
     private static final String TAG = "SimpleListActivity";
-    AperoAdAdapter adAdapter;
+    AdsAdapter adAdapter;
     int layoutCustomNative = com.ads.control.R.layout.custom_native_admod_medium;
     String idNative = "";
     SwipeRefreshLayout swRefresh;
     ListSimpleAdapter originalAdapter;
     RecyclerView recyclerView;
-    AperoAdPlacer.Listener listener = new AperoAdPlacer.Listener() {
+    AdsPlacer.Listener listener = new AdsPlacer.Listener() {
         @Override
         public void onAdLoaded(int i) {
             Log.i(TAG, "onAdLoaded native list: " + i);
@@ -87,7 +86,7 @@ public class SimpleListActivity extends AppCompatActivity {
     }
 
     private void setupAdAdapter() {
-        adAdapter = AperoAd.getInstance().getNativeRepeatAdapter(this, idNative, layoutCustomNative, com.ads.control.R.layout.layout_native_medium,
+        adAdapter = CustomAds.getInstance().getNativeRepeatAdapter(this, idNative, layoutCustomNative, com.ads.control.R.layout.layout_native_medium,
                 originalAdapter, listener, 5);
 
         recyclerView.setAdapter(adAdapter.getAdapter());

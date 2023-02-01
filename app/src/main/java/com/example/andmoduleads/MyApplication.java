@@ -1,17 +1,16 @@
 package com.example.andmoduleads;
 
-import com.ads.control.ads.AperoAd;
+import com.ads.control.ads.CustomAds;
 import com.ads.control.application.AdsMultiDexApplication;
 import com.ads.control.billing.AppPurchase;
 import com.ads.control.admob.Admob;
 import com.ads.control.admob.AppOpenManager;
-import com.ads.control.config.AperoAdConfig;
+import com.ads.control.config.AdsConfig;
 import com.example.andmoduleads.activity.MainActivity;
 import com.example.andmoduleads.activity.SplashActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class MyApplication extends AdsMultiDexApplication {
 
@@ -32,18 +31,18 @@ public class MyApplication extends AdsMultiDexApplication {
     }
 
     private void initAds() {
-        String environment = BuildConfig.DEBUG ? AperoAdConfig.ENVIRONMENT_DEBUG : AperoAdConfig.ENVIRONMENT_PRODUCTION;
-        aperoAdConfig = new AperoAdConfig(this, environment);
+        String environment = BuildConfig.DEBUG ? AdsConfig.ENVIRONMENT_DEBUG : AdsConfig.ENVIRONMENT_PRODUCTION;
+        adsConfig = new AdsConfig(this, environment);
 
         // Optional: enable ads resume
-        aperoAdConfig.setIdAdResume(BuildConfig.AD_APPOPEN_RESUME);
+        adsConfig.setIdAdResume(BuildConfig.AD_APPOPEN_RESUME);
 
         // Optional: setup list device test - recommended to use
         listTestDevice.add("EC25F576DA9B6CE74778B268CB87E431");
-        aperoAdConfig.setListDeviceTest(listTestDevice);
-        aperoAdConfig.setIntervalInterstitialAd(15);
+        adsConfig.setListDeviceTest(listTestDevice);
+        adsConfig.setIntervalInterstitialAd(15);
 
-        AperoAd.getInstance().init(this, aperoAdConfig, false);
+        CustomAds.getInstance().init(this, adsConfig, false);
 
         // Auto disable ad resume after user click ads and back to app
         Admob.getInstance().setDisableAdResumeWhenClickAds(true);
