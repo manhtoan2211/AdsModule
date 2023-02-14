@@ -8,7 +8,7 @@ This is SDK ads custom. It has built in some sdk for easy use like
 # Import Module
 ~~~
 	maven { url 'https://jitpack.io' }
-	implementation 'com.github.manhtoan2211:AdsModule:1.0.0'
+	implementation 'com.github.manhtoan2211:AdsModule:1.0.1'
 ~~~	 
 # Summary
 * [Setup CustomAds](#setup_aperoad)
